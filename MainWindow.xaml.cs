@@ -97,3 +97,43 @@ namespace XExplorer
         public string LastModified { get; set; }
     }
 }
+
+// Neuen Ordner erstellen
+string newFolderPath = Path.Combine(currentPath, "Neuer Ordner");
+Directory.CreateDirectory(newFolderPath);
+
+// Neue Datei erstellen
+string newFilePath = Path.Combine(currentPath, "NeueDatei.txt");
+File.Create(newFilePath).Close(); // .Close() schließt den FileStream
+
+// Datei löschen
+if (File.Exists(filePath))
+{
+    File.Delete(filePath);
+}
+
+// Ordner löschen
+if (Directory.Exists(folderPath))
+{
+    Directory.Delete(folderPath, true); // true für rekursives Löschen
+}
+
+// Datei umbenennen
+string newFilePath = Path.Combine(currentPath, "NeuerName.txt");
+File.Move(oldFilePath, newFilePath);
+
+// Ordner umbenennen
+string newFolderPath = Path.Combine(currentPath, "NeuerOrdnerName");
+Directory.Move(oldFolderPath, newFolderPath);
+
+private void FileListView_Drop(object sender, DragEventArgs e)
+{
+    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+    {
+        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        foreach (string file in files)
+        {
+            // Datei verarbeiten
+        }
+    }
+}
