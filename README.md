@@ -1,2 +1,2 @@
-# CuExplorer
+# XExplorer
 An Own Like Windows Explorer application with better gui directories and more!
